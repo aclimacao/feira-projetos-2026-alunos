@@ -3321,7 +3321,7 @@
           <ul class="rl">
             <li class="ok">Os materiais de papelaria são entregues nas mesas dos grupos pelas professoras Fernanda e
               Ariana, do Comitê de materiais.</li>
-            <li class="at">Se o grupo precisar dos materiais antes da data da feira, peça ao professor tutor.</li>
+            <li class="at">Ao adicionar um item, informe se o grupo precisa dele no dia da feira ou antes. Se for antes, o professor tutor combina a retirada.</li>
             <li class="at">A solicitação passa por validação e não garante a reserva do material.</li>
           </ul>
         </div>
@@ -3337,8 +3337,8 @@
       <div class="sv" id="v-mobiliario">
         <a class="back" href="#solicitacoes">← Solicitações</a>
         <h2>Mobiliário</h2>
-        <p class="l">Veja o mobiliário disponível na escola e adicione à solicitação o que o grupo precisar. Todo o
-          mobiliário deve ser devolvido na desmontagem.</p>
+        <p class="l">Veja o mobiliário disponível na escola e adicione à solicitação o que o grupo precisar. O
+          mobiliário está disponível <b>somente no dia da feira</b> e deve ser devolvido na desmontagem.</p>
         <div class="inc box">
           <div class="ih"><svg class="ic">
               <use href="#i-star" />
@@ -3600,7 +3600,7 @@
     const fmt = d => {const [a, m, x] = d.split("-"); return `${x}/${m}`};
     const sem = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
     const ic = (n, s) => `<svg class="ic"${s ? ` style="width:${s}px;height:${s}px"` : ""}><use href="#i-${n}"/></svg>`;
-    const API = "https://script.google.com/macros/s/AKfycbwBCUWgVv5p7GEfM50QtiqnovONsJrKinsLcGLofytioV4YOcvBXjvo7WZTvCHh4rej/exec";           /* URL do Apps Script (termina em /exec). Vazio = usa os dados deste arquivo e copia as solicitações. */
+    const API = "https://script.google.com/macros/s/AKfycbwMzC_avnRFGoY6KmCwLlCLeIhBheewcByrmJyBVxQm5J_neAzANkSFyFe7bdfOpyqy/exec";           /* URL do Apps Script (termina em /exec). Vazio = usa os dados deste arquivo e copia as solicitações. */
     const CHAVE = "";         /* opcional: igual à CHAVE do Code.gs */
     const ESCOLHA_ONLINE = false; /* true quando a escolha de estandes pelo site for aberta (e ESCOLHA_ESTANDES_ABERTA no Code.gs) */
     const TURMAS = ["INFO12", "ADM6", "MULTI5", "ADM5", "MULTI4", "ADM4"];
@@ -3617,6 +3617,7 @@
     let PRAZOS = [
       ["2026-10-13", "Escolha dos estandes", "Nesta data os grupos escolhem os estandes. Os grupos do 3º ano têm prioridade, seguidos pelos do 2º ano e, depois, pelos do 1º ano. Se dois ou mais grupos quiserem o mesmo estande, será realizado um sorteio.", "pin"],
       ["2026-10-23", "Data limite para as impressões", "Esta é a data limite para o envio dos materiais que serão impressos. Os grupos podem enviar antes, e isso é recomendado. Na solicitação, informe o tipo de material, a qualidade e o tamanho.", "printer"],
+      ["2026-10-23", "Prazo final para materiais e mobiliário", "Esta é a data limite para enviar pelo site as solicitações de materiais e de mobiliário. Lembre-se: toda solicitação é validada pelo Comitê e não garante a reserva. Se o grupo precisar de algum material antes da feira, informe isso ao solicitar.", "cart"],
       ["2026-11-06", "1º dia da feira", "Turmas que vão apresentar: ADM6, ADM5 e MULTI4.", "star"],
       ["2026-11-13", "2º dia da feira", "Turmas que vão apresentar: INFO12, MULTI5 e ADM4.", "star"]];
     const COR = {"Azul": "#1d6fd1", "Verde": "#2e9e4f", "Rosa": "#f27aa8", "Lilás": "#b79be0", "Laranja": "#f7941d", "Marrom": "#8a5a3a", "Preto": "#222", "Branco": "#fff", "Roxo": "#7b3fb5", "Azul-marinho": "#12285a", "Vermelho": "#d62828", "Colorido": "conic-gradient(#f7941d,#2e9e4f,#1d6fd1,#f27aa8,#f7941d)", "Amarelo gema": "#f5b800", "Amarelo neon": "#e8ff1a", "Magenta": "#d4007f", "Rosa claro": "#f8b9d0", "Rosa escuro": "#d6336c", "Ouro": "#d4a829", "Prata": "#c4c9cf", "Azul royal": "#1f4fd8", "Verde bandeira": "#00963f"};
@@ -3660,7 +3661,7 @@
     const EXS = [["frame", "Cartaz", "Tamanhos comuns: A4 e A3. Papel sulfite para uso comum ou papel mais grosso para o material final."], ["book", "Folder ou panfleto", "Em geral A4 dobrado ou A5. Papel de gramatura maior dá mais acabamento."]];
     const REG = [
       ["m", "chair", "O que todo grupo recebe", [["ok", "Uma mesa para o estande."], ["ok", "TNT para cobrir a mesa."], ["ok", "Um notebook para a apresentação."]]],
-      ["m", "cart", "Materiais e equipamentos", [["ok", "Os materiais de papelaria solicitados são entregues nas mesas dos grupos pelas professoras Fernanda e Ariana, do Comitê de materiais."], ["at", "Se o grupo precisar dos materiais antes da data da feira, peça ao professor tutor."], ["ok", "Os notebooks e os fones de ouvido são retirados na sala de equipamentos, marcada no mapa, entre a entrada, a saída e os estandes P2, P4, P5 e P21. A retirada é na montagem, das 7h45 às 9h10."], ["at", "Os equipamentos são devolvidos na desmontagem, das 12h às 12h45."]]],
+      ["m", "cart", "Materiais e equipamentos", [["ok", "Os materiais de papelaria solicitados são entregues nas mesas dos grupos pelas professoras Fernanda e Ariana, do Comitê de materiais."], ["at", "Se o grupo precisar de algum material antes da feira, escolha “Antes da feira” ao solicitar. O professor tutor combina a retirada."], ["at", "O mobiliário está disponível somente no dia da feira."], ["ok", "Os notebooks e os fones de ouvido são retirados na sala de equipamentos, marcada no mapa. A retirada é na montagem, das 7h45 às 9h10."], ["at", "Os equipamentos são devolvidos na desmontagem, das 12h às 12h45."]]],
       ["m", "shield", "Segurança em primeiro lugar", [["no", "suba em cadeiras, mesas ou pranchões."], ["ok", "Para pendurar ou fixar algo em locais altos, solicite o apoio de um professor, que usará a escada com segurança."]]],
       ["m", "tape", "Fixação de materiais", [["no", "use fita adesiva, fita dupla face ou similares nas paredes do foyer, da Enogastronomia e do auditório."], ["ok", "Nas paredes, é autorizado somente o uso de fita crepe."], ["no", "cole nem pendure materiais sobre quadros, obras de arte ou esculturas."]]],
       ["m", "palette", "Materiais e superfícies", [["no", "faça pinturas ou colagens diretamente sobre mesas, pranchões ou paredes."], ["no", "use tinta nas paredes. É expressamente proibido."], ["no", "apoie em paredes, mesas ou pranchões materiais com tinta úmida (painéis, maquetes, cartazes ou objetos decorativos) sem proteção adequada."], ["no", "use cola quente diretamente em mesas, pranchões ou paredes. Utilize-a somente sobre superfícies protegidas."]]],
@@ -3752,7 +3753,7 @@
     function pintaSol(it) {
       if (!it.length) return `<div class="box ac-g"><b>Nenhuma solicitação encontrada para este grupo.</b><p class="nt" style="margin-top:6px">Se o grupo acabou de enviar, aguarde um instante e consulte de novo. Impressões não aparecem aqui, porque são pedidas pelo Teams.</p></div>`;
       const gr = {}; it.forEach(i => (gr[i.data] = gr[i.data] || []).push(i));
-      return Object.keys(gr).reverse().map(d => `<div class="box ac-g"><div class="ac-h">Solicitação de ${esc(dataBr(d))}</div>${gr[d].map(i => {const s = stInfo(i.status), ln = linha({cor: i.cor, tam: i.tam, obs: i.obs}); return `<div class="ac-i"><div><b>${esc(i.q)}× ${esc(i.item)}</b><small>${esc(i.tipo)}${ln ? " · " + esc(ln) : ""}</small>${i.msg ? `<p class="ac-m">${esc(i.msg)}</p>` : ""}</div><span class="ac-b" style="--c:${s[1]};--ct:${s[2] || "var(--ink)"}">${esc(s[0])}</span></div>`}).join("")}</div>`).join("")
+      return Object.keys(gr).reverse().map(d => `<div class="box ac-g"><div class="ac-h">Solicitação de ${esc(dataBr(d))}</div>${gr[d].map(i => {const s = stInfo(i.status), ln = linha({cor: i.cor, tam: i.tam, obs: i.obs, quando: i.tipo === "Material" ? i.quando : ""}); return `<div class="ac-i"><div><b>${esc(i.q)}× ${esc(i.item)}</b><small>${esc(i.tipo)}${ln ? " · " + esc(ln) : ""}</small>${i.msg ? `<p class="ac-m">${esc(i.msg)}</p>` : ""}</div><span class="ac-b" style="--c:${s[1]};--ct:${s[2] || "var(--ink)"}">${esc(s[0])}</span></div>`}).join("")}</div>`).join("")
     }
     async function ver() {
       const gr = lerGrupo("a"); FORM.grupo = gr.grupo || FORM.grupo; salva();
@@ -3775,7 +3776,13 @@
     let cat = "Todos", busca = "";
     let CART = [], FORM = {}; try {CART = JSON.parse(localStorage.getItem("fpa-cart2") || "[]"); FORM = JSON.parse(localStorage.getItem("fpa-form") || "{}")} catch (e) { }
     const salva = () => {try {localStorage.setItem("fpa-cart2", JSON.stringify(CART)); localStorage.setItem("fpa-form", JSON.stringify(FORM))} catch (e) { } };
-    const linha = l => [l.cor, l.tam, l.obs].filter(Boolean).join(" · ");
+    const linha = l => [l.cor, l.tam, l.obs, l.quando].filter(Boolean).join(" · ");
+    /* data de hoje no fuso do aparelho (toISOString usaria UTC e "viraria" o dia à noite) */
+    const hojeISO = () => {const d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0")};
+    const ddmm = iso => iso.slice(8, 10) + "/" + iso.slice(5, 7);
+    const novoId = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+    let enviando = false, ENVIO = null; try {ENVIO = JSON.parse(localStorage.getItem("fpa-envio") || "null")} catch (e) { }
+    const salvaEnvio = () => {try {localStorage.setItem("fpa-envio", JSON.stringify(ENVIO))} catch (e) { } };
     function conta() {$("cn").textContent = CART.reduce((s, l) => s + l.q, 0)}
     function pintaCats() {const cats = ["Todos", ...new Set(MAT.map(m => m[0]))]; if (!cats.includes(cat)) cat = "Todos"; $("cps").innerHTML = cats.map(c => `<button type="button" class="cp" aria-pressed="${c === cat}">${c}</button>`).join("")}
     pintaCats();
@@ -3785,19 +3792,28 @@
     const stp = () => `<div class="st2"><button type="button" data-d="-1" aria-label="Menos">−</button><span>1</span><button type="button" data-d="1" aria-label="Mais">+</button></div>`;
     function lista() {
       const r = MAT.map((m, i) => [m, i]).filter(([m]) => (cat === "Todos" || m[0] === cat) && sem(m[1] + " " + m[2]).includes(sem(busca)));
-      $("lm").innerHTML = r.length ? r.map(([m, i]) => `<details class="pd" data-i="${i}"><summary>${ic(AV_FIT[m[0]], 34)}<b>${m[1]}<small>${m[2]}</small></b></summary><div class="pb"><p style="font-size:15px">Disponível: ${m[3]}</p>${chips("Cor", m[5])}${chips("Tamanho", m[6])}${m[7] ? `<h4>${m[7]}</h4><input class="q" style="margin:0" data-o type="text" maxlength="60">` : ""}${m[4] ? `<div class="wn">⚠ ${m[4]}</div>` : ""}<div class="qt">${stp()}<button type="button" class="btn" data-add>Adicionar à solicitação</button></div><p class="wn" style="display:none;background:#FFE0DA" data-er></p></div></details>`).join("") : "<p style='margin-top:14px'>Nenhum item encontrado. O que não está na lista é material atípico: converse com o seu tutor.</p>"
+      $("lm").innerHTML = r.length ? r.map(([m, i]) => `<details class="pd" data-i="${i}"><summary>${ic(AV_FIT[m[0]], 34)}<b>${m[1]}<small>${m[2]}</small></b></summary><div class="pb"><p style="font-size:15px">Disponível: ${m[3]}</p>${chips("Cor", m[5])}${chips("Tamanho", m[6])}${m[7] ? `<h4>${m[7]}</h4><input class="q" style="margin:0" data-o type="text" maxlength="60">` : ""}${m[4] ? `<div class="wn">⚠ ${m[4]}</div>` : ""}<h4>Quando o grupo precisa?</h4><div class="ch" data-g="Quando"><button type="button" aria-pressed="true">No dia da feira</button><button type="button" aria-pressed="false">Antes da feira</button></div><div data-ate style="display:none"><h4>Até que dia o grupo precisa? (obrigatório)</h4><input class="q" style="margin:0" type="date" data-dt min="${hojeISO()}" max="2026-11-12"><p class="nt" style="font-size:13px;margin-top:6px">Pode ser hoje ou uma data futura, sempre antes do dia da feira. O Comitê valida o pedido e o professor tutor combina a retirada.</p></div><div class="qt">${stp()}<button type="button" class="btn" data-add>Adicionar à solicitação</button></div><p class="wn" style="display:none;background:#FFE0DA" data-er></p></div></details>`).join("") : "<p style='margin-top:14px'>Nenhum item encontrado. O que não está na lista é material atípico: converse com o seu tutor.</p>"
     }
     const ok = b => {b.textContent = "Adicionado ✓"; setTimeout(() => b.textContent = "Adicionar à solicitação", 1400)};
     $("lm").onclick = e => {
       const b = e.target.closest("button"); if (!b) return; const d = b.closest(".pd");
-      if (b.parentElement.classList.contains("ch")) {[...b.parentElement.children].forEach(x => x.setAttribute("aria-pressed", x === b && b.getAttribute("aria-pressed") !== "true")); return }
+      if (b.parentElement.classList.contains("ch")) {
+        const un = b.parentElement.dataset.g === "Quando", lig = un || b.getAttribute("aria-pressed") !== "true";
+        [...b.parentElement.children].forEach(x => x.setAttribute("aria-pressed", x === b && lig));
+        if (un) d.querySelector("[data-ate]").style.display = b.textContent === "Antes da feira" ? "block" : "none"; return
+      }
       if (b.dataset.d) {const s = d.querySelector(".st2 span"); s.textContent = Math.max(1, Math.min(99, +s.textContent + +b.dataset.d)); return }
       if (b.hasAttribute("data-add")) {
         const m = MAT[d.dataset.i], g = n => {const c = d.querySelector(`.ch[data-g="${n}"] [aria-pressed=true]`); return c ? c.textContent : ""}, er = d.querySelector("[data-er]");
-        if (m[5].length && !g("Cor")) {er.textContent = "Escolha uma cor antes de adicionar."; er.style.display = "block"; return }
-        if (m[6].length && !g("Tamanho")) {er.textContent = "Escolha um tamanho antes de adicionar."; er.style.display = "block"; return }
+        if ((m[5] || []).length && !g("Cor")) {er.textContent = "Escolha uma cor antes de adicionar."; er.style.display = "block"; return }
+        if ((m[6] || []).length && !g("Tamanho")) {er.textContent = "Escolha um tamanho antes de adicionar."; er.style.display = "block"; return }
         er.style.display = "none"; const o = d.querySelector("[data-o]");
-        CART.push({tipo: "Material", n: m[1], cor: g("Cor"), tam: g("Tamanho"), obs: o ? o.value.trim() : "", q: +d.querySelector(".st2 span").textContent}); salva(); conta(); ok(b)
+        const antes = g("Quando") === "Antes da feira", dv = d.querySelector("[data-dt]").value;
+        if (antes) {
+          const aviso = !dv ? "Informe até que dia o grupo precisa do material." : dv < hojeISO() ? "A data não pode ser anterior a hoje." : dv > "2026-11-12" ? "A data precisa ser antes do dia da feira." : "";
+          if (aviso) {er.textContent = aviso; er.style.display = "block"; return }
+        }
+        CART.push({tipo: "Material", n: m[1], cor: g("Cor"), tam: g("Tamanho"), obs: o ? o.value.trim() : "", quando: antes ? "Antes da feira, até " + ddmm(dv) : "No dia da feira", qd: antes ? "Antes da feira" : "Dia da feira", dt: antes ? dv : "", q: +d.querySelector(".st2 span").textContent}); salva(); conta(); ok(b)
       }
     };
     lista();
@@ -3807,7 +3823,7 @@
       el.onclick = e => {
         const b = e.target.closest("button"); if (!b) return; const r = b.closest(".eqr");
         if (b.dataset.d) {const s = r.querySelector(".st2 span"); s.textContent = Math.max(1, Math.min(99, +s.textContent + +b.dataset.d)); return }
-        if (b.hasAttribute("data-add")) {CART.push({tipo, n: r.dataset.n, cor: "", tam: "", obs: "", q: +r.querySelector(".st2 span").textContent}); salva(); conta(); b.textContent = "Adicionado ✓"; setTimeout(() => b.textContent = "Adicionar", 1400)}
+        if (b.hasAttribute("data-add")) {CART.push({tipo, n: r.dataset.n, cor: "", tam: "", obs: "", qd: "Dia da feira", dt: "", q: +r.querySelector(".st2 span").textContent}); salva(); conta(); b.textContent = "Adicionado ✓"; setTimeout(() => b.textContent = "Adicionar", 1400)}
       }
     }
     function pintaMob() {linhas($("lmo"), MOB, "Mobiliário", [...new Set(MOB.map(x => x[0]))]); linhas($("leq"), EQP, "Equipamento")}
@@ -3823,7 +3839,7 @@
  <label for="f1">Turma</label><select id="f1">${["", ...TURMAS].map(x => `<option${FORM.turma === x ? " selected" : ""}>${x}</option>`).join("")}</select>
  <div id="fg">${blocoGrupo("f")}</div>
  <p class="nt" style="font-size:13px;margin-top:12px">Todas as solicitações são validadas pelo Comitê e não garantem a reserva do material.</p>
- ${msg || ""}<button class="btn" id="env" type="button"${CART.length ? "" : " disabled"}>${API ? "Enviar solicitação" : "Copiar solicitação para o tutor"}</button><button class="btn s" id="fx2" type="button">Fechar</button>`
+ ${msg || ""}<button class="btn" id="env" type="button"${CART.length && !enviando ? "" : " disabled"}>${API ? "Enviar solicitação" : "Copiar solicitação para o tutor"}</button><button class="btn s" id="fx2" type="button">Fechar</button>`
     }
     function folhaEstande(id, msg) {
       const ts = TURMAS.filter(x => DIA_T[x] === dia); if (!ts.includes(FORM.turma)) {FORM.turma = ts[0] || ""; FORM.gid = ""; FORM.outro = false}
@@ -3838,18 +3854,28 @@
     $("sh").onclick = async e => {
       if (e.target === $("sh") || e.target.id === "fx2" || (e.target.closest && e.target.closest("[data-fx]"))) {$("sh").classList.remove("on"); return }
       if (e.target.id === "envE") {
+        if (enviando) return;
         const id = e.target.dataset.e, gr = lerGrupo("e"); FORM.turma = $("e1").value; FORM.grupo = gr.grupo; FORM.tutor = gr.tutor; salva();
         if (!FORM.grupo || !FORM.tutor) {folhaEstande(id, '<div class="wn" style="background:#FFE0DA">Escolha o grupo e confira o professor tutor.</div>'); return }
-        try {const x = await enviar({tipo: "Estande", estande: id, dia, turma: FORM.turma, grupo: FORM.grupo, tutor: FORM.tutor}); folhaEstande(id, x === "env" ? '<div class="ok2">Solicitação registrada. O Comitê confirma a escolha seguindo a prioridade e o sorteio, se houver disputa.</div>' : '<div class="ok2">Solicitação copiada. Envie ao professor tutor.</div>'); carregar()}
-        catch (x) {folhaEstande(id, erroMsg(x))} return
+        enviando = true; e.target.disabled = true; e.target.textContent = "Enviando…";
+        try {const x = await enviar({tipo: "Estande", estande: id, dia, turma: FORM.turma, grupo: FORM.grupo, tutor: FORM.tutor}); enviando = false; folhaEstande(id, x === "env" ? '<div class="ok2">Solicitação registrada. O Comitê confirma a escolha seguindo a prioridade e o sorteio, se houver disputa.</div>' : '<div class="ok2">Solicitação copiada. Envie ao professor tutor.</div>'); carregar()}
+        catch (x) {enviando = false; folhaEstande(id, erroMsg(x))} return
       }
       const r = e.target.dataset.r; if (r !== undefined) {CART.splice(+r, 1); salva(); conta(); folha(); return }
       if (e.target.id === "env") {
+        if (enviando) return;   /* segundo clique (ou toque duplo) enquanto o primeiro envio ainda está em andamento */
         const gr = lerGrupo("f"); FORM.turma = $("f1").value; FORM.grupo = gr.grupo; FORM.tutor = gr.tutor; salva();
         if (!FORM.turma || !FORM.grupo || !FORM.tutor) {folha('<div class="wn" style="background:#FFE0DA">Escolha a turma e o grupo e confira o professor tutor.</div>'); return }
-        const p = {tipo: "Solicitação", turma: FORM.turma, dia: DIA_T[FORM.turma], grupo: FORM.grupo, grupoId: gr.grupoId, tutor: FORM.tutor, itens: CART.map(l => ({...l}))};
-        try {const x = await enviar(p); if (x === "env") {CART = []; salva(); conta(); folha('<div class="ok2">Solicitação enviada. Ela será validada pelo Comitê, e o envio não garante a reserva do material. <a href="#solicitacoes/acompanhar" data-fx style="color:inherit;text-decoration:underline">Acompanhar o status</a></div>')} else folha('<div class="ok2">Solicitação copiada. Cole e envie ao professor tutor. Em breve o envio será feito diretamente por aqui.</div>')}
-        catch (x) {folha(erroMsg(x))}
+        const diaT = DIA_T[FORM.turma], feira = "2026-" + String(diaT).split("/").reverse().join("-"), h = hojeISO();
+        const ruim = CART.find(l => (l.qd === "Antes da feira" && (!l.dt || l.dt < h || l.dt >= feira)) || (!l.qd && /^Antes/.test(l.quando || "")));
+        if (ruim) {folha(`<div class="wn" style="background:#FFE0DA">A data de “${esc(ruim.n)}” não vale mais: precisa ser de hoje até o dia anterior à feira (${esc(diaT)}). Remova o item e adicione de novo com outra data.</div>`); return }
+        enviando = true; e.target.disabled = true; e.target.textContent = "Enviando…";
+        const itens = CART.map(l => ({...l, qd: l.qd || "Dia da feira"}));
+        const sig = JSON.stringify([itens, FORM.turma, FORM.grupo, gr.grupoId]);
+        if (!ENVIO || ENVIO.sig !== sig) {ENVIO = {id: novoId(), sig}; salvaEnvio()}   /* mesmo conteúdo = mesmo ID: o servidor ignora repetições */
+        const p = {tipo: "Solicitação", envioId: ENVIO.id, turma: FORM.turma, dia: diaT, grupo: FORM.grupo, grupoId: gr.grupoId, tutor: FORM.tutor, itens};
+        try {const x = await enviar(p); enviando = false; if (x === "env") {CART = []; ENVIO = null; salvaEnvio(); salva(); conta(); folha('<div class="ok2">Solicitação enviada. Ela será validada pelo Comitê, e o envio não garante a reserva do material. <a href="#solicitacoes/acompanhar" data-fx style="color:inherit;text-decoration:underline">Acompanhar o status</a></div>')} else folha('<div class="ok2">Solicitação copiada. Cole e envie ao professor tutor. Em breve o envio será feito diretamente por aqui.</div>')}
+        catch (x) {enviando = false; folha(erroMsg(x))}
       }
     };
     conta();
